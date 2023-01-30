@@ -2,6 +2,7 @@ package com.example.jsoupcrawler.adapter.outbound.crawler.velog
 
 import com.example.jsoupcrawler.application.outbound.crawler.CrawlerPort
 import com.example.jsoupcrawler.application.outbound.crawler.model.CrawlerResponse
+import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.springframework.stereotype.Component
 
@@ -10,7 +11,7 @@ class VelogAdapter : CrawlerPort {
 
     override fun parseDocument(url: String): CrawlerResponse {
 
-        val doc : Document = Document(url)
+        val doc = Jsoup.connect(url).get()
 
         return CrawlerResponse(
             title = VelogParser.TITLE.parse(doc),

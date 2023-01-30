@@ -10,6 +10,7 @@ enum class VelogParser : Parser {
             return try{
                 doc.title()
             }catch (e: Exception){
+                e.printStackTrace()
                 ""
             }
         }
@@ -21,6 +22,7 @@ enum class VelogParser : Parser {
                 val summaryTextArea:String  = doc.select("div.atom-one").text()
                 summaryTextArea.substring(0,200)
             }catch (e: Exception){
+                e.printStackTrace()
                 ""
             }
         }
@@ -28,8 +30,9 @@ enum class VelogParser : Parser {
     TIMESTAMP {
         override fun parse(doc: Document): String {
             return try{
-                doc.select(".information")[3].text()
+                doc.select(".information > span")[2].text()
             }catch (e: Exception){
+                e.printStackTrace()
                 ""
             }
         }
