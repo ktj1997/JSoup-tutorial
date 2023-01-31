@@ -10,7 +10,6 @@ enum class VelogParser : Parser {
             return try {
                 doc.title()
             } catch (e: Exception) {
-                e.printStackTrace()
                 ""
             }
         }
@@ -18,13 +17,11 @@ enum class VelogParser : Parser {
     SUMMARY {
         override fun parse(doc: Document): String {
             return try {
-                val content = doc.select("div.atom-one").text().substring(0, 200)
-                return when {
-                    content.length > 200 -> content.substring(0, 200)
-                    else -> content
-                }
+                doc.select("div.atom-one > p")
+                    .map { it.text() }
+                    .joinToString("")
+                    .take(200)
             } catch (e: Exception) {
-                e.printStackTrace()
                 ""
             }
         }
@@ -44,7 +41,6 @@ enum class VelogParser : Parser {
                     else -> dateExpression
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
                 return ""
             }
         }
