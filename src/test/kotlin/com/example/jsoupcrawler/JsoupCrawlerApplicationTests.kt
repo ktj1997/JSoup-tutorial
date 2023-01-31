@@ -9,5 +9,4 @@ class JsoupCrawlerApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }

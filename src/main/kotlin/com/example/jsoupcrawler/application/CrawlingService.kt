@@ -9,20 +9,19 @@ import org.springframework.stereotype.Service
 
 @Service
 class CrawlingService(
-    private val crawlerPorts: Map<String,CrawlerPort>
+    private val crawlerPorts: Map<String, CrawlerPort>
 ) : ParseCrawlingDocumentUseCase {
 
     override fun getDocument(url: String): ParseCrawlingDocumentUseCaseDto {
         val blog = BlogType.decide(url)
 
-        if(blog === BlogType.ETC){
+        if (blog === BlogType.ETC) {
             return ParseCrawlingDocumentUseCaseDto.empty()
         }
 
         val crawlerName = CrawlerPortProperties.getMatchedCrawlerName(blog)
-        val crawler = crawlerPorts.get(crawlerName)?: throw RuntimeException("Can't find proper crawler")
+        val crawler = crawlerPorts.get(crawlerName) ?: throw RuntimeException("Can't find proper crawler")
 
-
-        return ParseCrawlingDocumentUseCaseDto.from(blog.name,crawler.parseDocument(url))
+        return ParseCrawlingDocumentUseCaseDto.from(blog.name, crawler.parseDocument(url))
     }
 }

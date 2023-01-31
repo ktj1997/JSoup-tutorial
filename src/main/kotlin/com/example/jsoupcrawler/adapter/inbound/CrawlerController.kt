@@ -26,6 +26,5 @@ class CrawlerController(
 
     @PostMapping("/submit")
     fun submitDocument() {
-
     }
 }

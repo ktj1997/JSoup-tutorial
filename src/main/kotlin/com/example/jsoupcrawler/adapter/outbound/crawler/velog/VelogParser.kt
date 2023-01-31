@@ -7,9 +7,9 @@ import java.time.LocalDate
 enum class VelogParser : Parser {
     TITLE {
         override fun parse(doc: Document): String {
-            return try{
+            return try {
                 doc.title()
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 ""
             }
@@ -17,13 +17,13 @@ enum class VelogParser : Parser {
     },
     SUMMARY {
         override fun parse(doc: Document): String {
-            return try{
-                val content = doc.select("div.atom-one").text().substring(0,200)
-                return when{
-                    content.length > 200 -> content.substring(0,200)
+            return try {
+                val content = doc.select("div.atom-one").text().substring(0, 200)
+                return when {
+                    content.length > 200 -> content.substring(0, 200)
                     else -> content
                 }
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
                 ""
             }

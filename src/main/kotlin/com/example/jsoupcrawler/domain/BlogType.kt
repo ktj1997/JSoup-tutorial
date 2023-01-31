@@ -3,7 +3,7 @@ package com.example.jsoupcrawler.domain
 import java.lang.Exception
 
 enum class BlogType {
-    VELOG, TISTORY, NAVERBLOG,MEDIUM, ETC;
+    VELOG, TISTORY, NAVERBLOG, MEDIUM, ETC;
 
     companion object {
         fun decide(url: String): BlogType {
@@ -16,7 +16,7 @@ enum class BlogType {
                     domain.startsWith("velog.io", true) -> VELOG
                     domain.startsWith("blog.naver.com", true) -> NAVERBLOG
                     domain.endsWith("tistory.com", true) -> TISTORY
-                    domain.startsWith("medium.com",true) -> MEDIUM
+                    domain.startsWith("medium.com", true) -> MEDIUM
                     else -> ETC
                 }
             } catch (e: Exception) {

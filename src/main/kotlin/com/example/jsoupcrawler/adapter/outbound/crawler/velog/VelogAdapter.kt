@@ -17,6 +17,6 @@ class VelogAdapter : CrawlerPort {
             title = VelogParser.TITLE.parse(doc),
             summary = VelogParser.SUMMARY.parse(doc),
             createdAt = VelogParser.TIMESTAMP.parse(doc)
-        );
+        )
     }
 }
