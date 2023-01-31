@@ -18,8 +18,11 @@ enum class VelogParser : Parser {
     SUMMARY {
         override fun parse(doc: Document): String {
             return try{
-                val summaryTextArea:String  = doc.select("div.atom-one").text()
-                summaryTextArea.substring(0,200)
+                val content = doc.select("div.atom-one").text().substring(0,200)
+                return when{
+                    content.length > 200 -> content.substring(0,200)
+                    else -> content
+                }
             }catch (e: Exception){
                 e.printStackTrace()
                 ""
