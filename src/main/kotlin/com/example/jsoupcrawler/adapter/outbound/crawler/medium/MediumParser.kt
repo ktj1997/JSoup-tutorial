@@ -7,7 +7,7 @@ enum class MediumParser : Parser {
     TITLE {
         override fun parse(doc: Document): String {
             return try {
-                doc.select("h1.pw-post-title").text()
+                doc.select("meta[property=og:title]").attr("content")
             } catch (e: Exception) {
                 e.printStackTrace()
                 ""
@@ -35,5 +35,5 @@ enum class MediumParser : Parser {
             e.printStackTrace()
             ""
         }
-    } 
+    }
 }
