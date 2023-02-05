@@ -30,7 +30,7 @@ enum class MediumParser : Parser {
     TIMESTAMP;
     override fun parse(doc: Document): String {
         return try {
-            doc.select("meta[property=article:published_time]").attr("content")
+            doc.select(".pw-published-date > span")[0].text()
         } catch (e: Exception) {
             e.printStackTrace()
             ""
